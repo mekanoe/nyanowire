@@ -10,7 +10,7 @@ Still a WIP. Designed and tested for Unity 5.6.3p1 & VRChat
 ([Higher Res](https://gfycat.com/WeirdGlaringHake))
 
 **Material Panel**  
-<a href="https://i.imgur.com/6MmjnJB.png" target="_blank"><img src="https://i.imgur.com/6MmjnJB.png" /></a>
+<a href="https://i.imgur.com/6MmjnJB.png" target="_blank"><img src="https://i.imgur.com/6MmjnJB.png" /></a>  
 ([Higher Res](https://i.imgur.com/6MmjnJB.png))
 
 - **Main Texture** - (Shaded Only) - The texture to draw under the wireframe.
