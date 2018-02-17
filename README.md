@@ -20,3 +20,9 @@ Still a WIP. Designed and tested for Unity 5.6.3p1 & VRChat
 - **Wire Thickness** - 0-800, controls the size of the wireframe.
 - **Wire Intensity** - 0-20, controls brightness, emissivity, and opacity.
 - **Max Tri Size** - *I'm honestly unsure what this does at this time.*
+
+## TODO
+
+- Cutout
+- Unlit
+- More Examples
