@@ -3,7 +3,7 @@ Nyano's Wireframe Overlay shaders.
 
 Still a WIP. Designed and tested for Unity 5.6.3p1 & VRChat
 
-[Download here](https://google.com)
+[Download here](https://github.com/kayteh/Nyanowire/releases/download/v0.1/nyanowire-v0.1.unitypackage)
 
 **Example**  
 <a href="https://gfycat.com/WeirdGlaringHake" target="_blank"><img src="https://thumbs.gfycat.com/WeirdGlaringHake-size_restricted.gif" /></a>  
