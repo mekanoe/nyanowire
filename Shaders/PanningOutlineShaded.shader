@@ -24,7 +24,7 @@ Shader "Nyanowire/Wireframe Overlay (Shaded)"
 
 			CGPROGRAM
 			#pragma geometry geom
-			#pragma fragment fragShaded
+			#pragma fragment frag
 			#pragma vertex vert
 			#define NW_SHADED 1
             #include "UnityCG.cginc"

@@ -1,9 +1,11 @@
 // Wireframe shader based on the the following
 // http://developer.download.nvidia.com/SDK/10/direct3d/Source/SolidWireframe/Doc/SolidWireframe.pdf
 
+// Shaded doesn't need certain features on, especially since it doesn't include a main texture.
 #ifndef NW_SHADED
 #define NW_SHADED 0
 #endif
+
 #pragma fragment frag
 #include "UnityCG.cginc"
 #pragma fragmentoption ARB_precision_hint_fastest
@@ -11,15 +13,12 @@
 #pragma only_renderers d3d9 d3d11 glcore gles 
 #pragma target 4.0
 
-// uniform float _OutlineWidth;
 uniform float _WireThickness = 100;
 uniform float _WireSmoothness = 0;
 uniform float4 _WireColor = float4(0.0, 1.0, 0.0, 1.0);
 uniform float4 _BaseColor = float4(0.0, 0.0, 0.0, 0.0);
 uniform float _MaxTriSize = 25.0;
 uniform float _WireframeDrawDistance = 3.0;
-
-// #pragma vertex vert
 uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
 uniform sampler2D _Rainbow; uniform float4 _Rainbow_ST;
 uniform float _Speed;//
@@ -131,62 +130,15 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
     triangleStream.Append(o);
 }
 
-VertexOutput vert (VertexInput v) {
-    VertexOutput o = (VertexOutput)0;
-    o.uv0 = v.texcoord0;
-    o.uv1 = v.texcoord1;
-    o.uv2 = v.texcoord2;
-    o.pos = UnityObjectToClipPos( float4(v.vertex.xyz + v.normal*0,1) );
-    return o;
-}
-
 float4 frag(g2f i, float facing : VFACE) : SV_Target {
 
     float minDistanceToEdge = min(i.dist[0], min(i.dist[1], i.dist[2])) * i.dist[3];
 
-    // Early out if we know we are not on a line segment.
-    if(minDistanceToEdge > 0.9 || i.area.x > _MaxTriSize)
-    {
-        return fixed4(_BaseColor.rgb,0);
-    }
-
-
-    float isFrontFace = ( facing >= 0 ? 1 : 0 );
-    float faceSign = ( facing >= 0 ? 1 : -1 );
-
-    // remove lines after some distance
-    float4 objPos = mul(unity_ObjectToWorld, float4(0,0,0,1));
-    float4 distance = abs(objPos - float4(_WorldSpaceCameraPos, 1));
-    float maxDist = max(distance.x, max(distance.y, distance.z)); 
-    float ddSq = _WireframeDrawDistance * 2;
-
-    // if beyond draw distance *2, just skip
-    if(maxDist > (ddSq)) {
-        return fixed4(_BaseColor.rgb,0);        
-    }
-
-    float alpha = exp2(_WireSmoothness * -1.0 * 0.33 * 0.33);
-    // if beyond draw distance, scale smoothness up some
-    if(maxDist > _WireframeDrawDistance) {
-        alpha = min(alpha, 1.0 - maxDist/ddSq);
-    }
-
-    // rainbow texture calc
-    float4 time = _Time;
-    float2 timeUV0 = (i.dist+(_Speed*time.g));
-    float4 _Rainbow_var = tex2D(_Rainbow,TRANSFORM_TEX(timeUV0, _Rainbow));
-
-    float4 finalColor = float4(lerp(_BaseColor, _Rainbow_var.rgb, alpha), 0);
-    return finalColor;
-}
-
-float4 fragShaded (g2f i, float facing : VFACE) : SV_Target
-{
-    float minDistanceToEdge = min(i.dist[0], min(i.dist[1], i.dist[2])) * i.dist[3];
-
-    float4 baseColor = _BaseColor * tex2D(_MainTex, i.uv0);
-    
-    float node_2314 = distance(_WorldSpaceCameraPos, i.worldSpacePosition.rgb);
+    #if NW_SHADED == 1
+    float4 baseColor = _BaseColor * tex2D(_MainTex, i.uv0);    
+    #else
+    float4 baseColor = _BaseColor; 
+    #endif
 
     // Early out if we know we are not on a line segment.
     if(minDistanceToEdge > 0.9)

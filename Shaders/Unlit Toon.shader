@@ -1,4 +1,4 @@
-Shader "Nyanowire/Unlit Toon" {
+Shader "Nyanowire/Unlit Toon (Deprecated)" {
     Properties {
         _MainTex ("MainTex", 2D) = "bump" {}
         _Tint ("Tint", Color) = (1,1,1,0)
