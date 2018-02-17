@@ -14,7 +14,7 @@
 #pragma target 4.0
 
 uniform float _WireThickness = 100;
-uniform float _WireSmoothness = 0;
+uniform float _WireSmoothness = 20;
 uniform float4 _WireColor = float4(0.0, 1.0, 0.0, 1.0);
 uniform float4 _BaseColor = float4(0.0, 0.0, 0.0, 0.0);
 uniform float _MaxTriSize = 25.0;
@@ -147,7 +147,7 @@ float4 frag(g2f i, float facing : VFACE) : SV_Target {
     }
 
     // Smooth our line out
-    float t = exp2(_WireSmoothness * -1.0 * minDistanceToEdge * minDistanceToEdge);
+    float t = exp2((20 - _WireSmoothness) * -1.0 * minDistanceToEdge * minDistanceToEdge);
     // remove lines after some distance
     float4 objPos = mul(unity_ObjectToWorld, float4(0,0,0,1));
     float4 distance = abs(objPos - float4(_WorldSpaceCameraPos, 1));
