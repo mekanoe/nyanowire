@@ -26,3 +26,9 @@ Still a WIP. Designed and tested for Unity 5.6.3p1 & VRChat
 - Cutout
 - Unlit
 - More Examples
+
+## Hat Tips
+
+- [CubedParadox](https://github.com/cubedparadox/Cubeds-Unity-Shaders) - Shadow Casting
+- [SynLogic](https://github.com/synlogic/Syns-Unity-Shaders) - Scrolling Textures, Distance
+- [NoeNoe](https://vrcat.club/threads/updated-2-2-18-noenoe-overlay-shaders.157/) - Reference
