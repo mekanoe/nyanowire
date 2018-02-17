@@ -1,7 +1,9 @@
 # Nyanowire
 Nyano's Wireframe Overlay shaders. 
 
-Still a WIP. Designed and tested for Unity 5.6.3p1 & VRChat
+Still a WIP. Designed and tested for Unity 5.6.3p1 & VRChat.
+
+These are not made in ShaderForge; however, it uses code from other ShaderForge-made textures.
 
 [Download here](https://github.com/kayteh/nyanowire/releases/download/v0.1/nyanowire-v0.1.unitypackage)
 
@@ -29,6 +31,9 @@ Still a WIP. Designed and tested for Unity 5.6.3p1 & VRChat
 
 ## Hat Tips
 
-- [CubedParadox](https://github.com/cubedparadox/Cubeds-Unity-Shaders) - Shadow Casting
+This shader set is a mix of many other shaders, and made possible by these friends.
+
+- [CubedParadox](https://github.com/cubedparadox/Cubeds-Unity-Shaders) - Shadow Casting, Reference
 - [SynLogic](https://github.com/synlogic/Syns-Unity-Shaders) - Scrolling Textures, Distance
+- [Chaser324](https://github.com/Chaser324/unity-wireframe) - Wireframe
 - [NoeNoe](https://vrcat.club/threads/updated-2-2-18-noenoe-overlay-shaders.157/) - Reference
