@@ -5,7 +5,7 @@ Still a WIP. Designed and tested for Unity 5.6.3p1 & VRChat.
 
 These are not made in ShaderForge; however, it uses code from other ShaderForge-made textures.
 
-[Download here](https://github.com/kayteh/nyanowire/releases/download/v0.1/nyanowire-v0.1.unitypackage)
+[Download here](https://github.com/kayteh/nyanowire/releases/download/v0.1.1/nyanowire-v0.1.1.unitypackage)
 
 **Example**  
 <a href="https://gfycat.com/WeirdGlaringHake" target="_blank"><img src="https://thumbs.gfycat.com/WeirdGlaringHake-size_restricted.gif" /></a>  
