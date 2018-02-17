@@ -1,7 +1,6 @@
 Shader "Nyanowire/Wireframe Overlay" {
     Properties {
 		_BaseColor ("Base Color", Color) = (0.0, 0.0, 0.0, 0.0)
-        _OutlineWidth ("Outline Width", Float ) = 0
 		_WireframeDrawDistance ("Fade Distance", float) = 1.7
         _Rainbow ("Wireframe Texture", 2D) = "white" {}
         _Speed ("Wireframe Texture Speed", Float ) = 0.1

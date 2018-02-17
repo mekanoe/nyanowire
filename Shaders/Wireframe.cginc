@@ -1,8 +1,17 @@
+// Wireframe shader based on the the following
+// http://developer.download.nvidia.com/SDK/10/direct3d/Source/SolidWireframe/Doc/SolidWireframe.pdf
 
 #ifndef NW_SHADED
 #define NW_SHADED 0
 #endif
+#pragma fragment frag
+#include "UnityCG.cginc"
+#pragma fragmentoption ARB_precision_hint_fastest
+#pragma multi_compile_shadowcaster
+#pragma only_renderers d3d9 d3d11 glcore gles 
+#pragma target 4.0
 
+// uniform float _OutlineWidth;
 uniform float _WireThickness = 100;
 uniform float _WireSmoothness = 0;
 uniform float4 _WireColor = float4(0.0, 1.0, 0.0, 1.0);
@@ -11,13 +20,6 @@ uniform float _MaxTriSize = 25.0;
 uniform float _WireframeDrawDistance = 3.0;
 
 // #pragma vertex vert
-#pragma fragment frag
-#include "UnityCG.cginc"
-#pragma fragmentoption ARB_precision_hint_fastest
-#pragma multi_compile_shadowcaster
-#pragma only_renderers d3d9 d3d11 glcore gles 
-#pragma target 4.0
-uniform float _OutlineWidth;
 uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
 uniform sampler2D _Rainbow; uniform float4 _Rainbow_ST;
 uniform float _Speed;//
@@ -170,9 +172,9 @@ float4 frag(g2f i, float facing : VFACE) : SV_Target {
     }
 
     // rainbow texture calc
-    float4 node_7673 = _Time;
-    float2 node_2892 = (i.dist+(_Speed*node_7673.g));
-    float4 _Rainbow_var = tex2D(_Rainbow,TRANSFORM_TEX(node_2892, _Rainbow));
+    float4 time = _Time;
+    float2 timeUV0 = (i.dist+(_Speed*time.g));
+    float4 _Rainbow_var = tex2D(_Rainbow,TRANSFORM_TEX(timeUV0, _Rainbow));
 
     float4 finalColor = float4(lerp(_BaseColor, _Rainbow_var.rgb, alpha), 0);
     return finalColor;
@@ -212,9 +214,9 @@ float4 fragShaded (g2f i, float facing : VFACE) : SV_Target
     // Smooth our line out
     float isFrontFace = ( facing >= 0 ? 1 : 0 );
     float faceSign = ( facing >= 0 ? 1 : -1 );
-    float4 node_7673 = _Time;
-    float2 node_2892 = (i.dist+(_Speed*node_7673.g));
-    float4 _Rainbow_var = tex2D(_Rainbow,TRANSFORM_TEX(node_2892, _Rainbow));
+    float4 time = _Time;
+    float2 timeUV0 = (i.dist+(_Speed*time.g));
+    float4 _Rainbow_var = tex2D(_Rainbow,TRANSFORM_TEX(timeUV0, _Rainbow));
 
     
     float4 finalColor = float4(lerp(baseColor, _Rainbow_var.rgb, t), 1);
